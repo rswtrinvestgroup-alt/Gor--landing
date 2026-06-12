@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/api/telegram-lead", "destination": "/api/telegram-lead.js" }
+  ]
+}

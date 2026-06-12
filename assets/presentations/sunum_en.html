@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gor Sargsyan | Global AI & Economics Strategy Presentation</title>
+<style>
+        /* PDF Çıktı ve Ekran Düzeni İçin A4 Yatay Standartları */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #f1f5f9; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #334155; }
+        
+        .slide {
+            width: 297mm;
+            height: 210mm;
+            background: #ffffff;
+            margin: 20px auto;
+            padding: 40px 60px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            page-break-after: always;
+        }
+
+        /* Canlı ve Ferah Arka Plan Akışları */
+        .slide::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.04), transparent 45%),
+                        radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.04), transparent 45%);
+            z-index: 0;
+        }
+        .slide > * { position: relative; z-index: 1; }
+
+        /* Üst ve Alt Kurumsal Bilgi Kuşakları */
+        .slide-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 15px; }
+        .slide-header .brand { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; font-size: 16px; color: #0f172a; }
+        .slide-header .brand span { color: #10b981; }
+        .slide-header .languages { display: flex; gap: 8px; font-size: 11px; font-weight: 700; color: #64748b; }
+        .slide-header .languages span { background: #f1f5f9; padding: 3px 8px; border-radius: 4px; border: 1px solid #e2e8f0; }
+        .slide-header .languages .active { background: #10b981; color: white; border-color: #10b981; }
+        
+        .slide-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #e2e8f0; padding-top: 15px; font-size: 12px; color: #94a3b8; }
+        .slide-footer .footer-links { font-weight: 600; color: #0ea5e9; }
+
+        /* Tipografi */
+        h1, h2, h3 { font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; color: #0f172a; }
+        .slide-title { font-size: 34px; font-weight: 800; color: #0f172a; margin-top: 20px; display: flex; align-items: center; gap: 15px; }
+        .slide-title i { color: #10b981; }
+        
+        /* Grid ve Düzen Yapıları */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; flex-grow: 1; margin: 30px 0; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; flex-grow: 1; margin: 30px 0; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; flex-grow: 1; margin: 30px 0; }
+        .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; flex-grow: 1; margin: 20px 0; }
+        .agent-type-slide { text-align: center; padding: 16px 12px !important; }
+        .agent-type-slide__emoji { font-size: 28px; display: block; margin-bottom: 8px; }
+        .agent-type-slide h3 { font-size: 14px !important; margin-bottom: 8px !important; }
+        .agent-type-slide p { font-size: 11px !important; line-height: 1.45 !important; margin: 0 !important; }
+        
+        /* Kurumsal Bileşenler (Cards, Badges) */
+        .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; padding: 25px; height: 100%; transition: all 0.3s ease; }
+        .card h3 { font-size: 18px; margin-bottom: 12px; color: #0f172a; display: flex; align-items: center; gap: 10px; }
+        .card h3 i { color: #0ea5e9; }
+        .card p { font-size: 14px; color: #475569; line-height: 1.6; }
+        .card ul { list-style: none; margin-top: 10px; }
+        .card ul li { font-size: 13px; margin-bottom: 8px; padding-left: 20px; position: relative; color: #475569; }
+        .card ul li::before { content: '→'; position: absolute; left: 0; color: #10b981; font-weight: bold; }
+        
+        .badge-container { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
+        .badge { background: rgba(16, 185, 129, 0.08); color: #065f46; border: 1px solid rgba(16, 185, 129, 0.2); padding: 4px 10px; border-radius: 8px; font-size: 12px; font-weight: 600; }
+
+        /* Büyük İstatistik Alanları */
+        .stat-box { text-align: center; padding: 30px; background: linear-gradient(135deg, #ffffff, #f8fafc); border: 1px solid #e2e8f0; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .stat-number { font-size: 48px; font-weight: 800; color: #10b981; margin-bottom: 5px; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+        .stat-label { font-size: 14px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Özgeçmiş Profil Alanı */
+        .profile-img-container {
+            width: 100%; max-width: 300px; margin: 0 auto; aspect-ratio: 3/4;
+            border-radius: 24px; overflow: hidden; border: 4px solid #ffffff;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08); background: #e2e8f0;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .profile-img-container img {
+            width: 100%; height: 100%; object-fit: cover;
+            object-position: center center; display: block;
+        }
+        
+        /* QR Code & Bot Kısmı */
+        .qr-placeholder { width: 160px; height: 160px; background: #fff; border: 2px dashed #cbd5e1; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 12px; }
+
+        /* === Slide 3-9 Görsel & Animasyon === */
+        @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+        @keyframes pulseRing { 0%{transform:scale(1);opacity:.6} 100%{transform:scale(1.5);opacity:0} }
+        @keyframes growBar { from{width:0} to{width:var(--w,70%)} }
+        @keyframes spinSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes dashMove { to{stroke-dashoffset:0} }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+        .slide--rich { overflow: hidden; }
+        .slide-deco { position:absolute; z-index:0; pointer-events:none; }
+        .slide-body { position:relative; z-index:1; flex-grow:1; display:flex; flex-direction:column; }
+
+        .v-icon-wrap {
+            width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+            margin-bottom:14px; flex-shrink:0;
+        }
+        .v-icon-wrap--green { background:linear-gradient(135deg,#d1fae5,#a7f3d0); color:#059669; }
+        .v-icon-wrap--blue { background:linear-gradient(135deg,#dbeafe,#bfdbfe); color:#0284c7; }
+        .v-icon-wrap--purple { background:linear-gradient(135deg,#ede9fe,#ddd6fe); color:#7c3aed; }
+        .v-icon-wrap--amber { background:linear-gradient(135deg,#fef3c7,#fde68a); color:#d97706; }
+        .v-icon-wrap--cyan { background:linear-gradient(135deg,#cffafe,#a5f3fc); color:#0891b2; }
+        .v-icon { width:26px; height:26px; }
+        .anim-float { animation: floatY 3s ease-in-out infinite; }
+        .anim-float-d1 { animation: floatY 3s ease-in-out .4s infinite; }
+        .anim-float-d2 { animation: floatY 3s ease-in-out .8s infinite; }
+        .anim-pulse-ring { position:relative; }
+        .anim-pulse-ring::after {
+            content:''; position:absolute; inset:-4px; border-radius:inherit; border:2px solid currentColor;
+            animation: pulseRing 2s ease-out infinite;
+        }
+
+        .stat-box--viz { position:relative; overflow:hidden; }
+        .stat-box--viz .stat-icon { font-size:28px; margin-bottom:8px; display:block; }
+        .stat-box--viz:nth-child(1) { animation: fadeUp .6s ease both; }
+        .stat-box--viz:nth-child(2) { animation: fadeUp .6s .1s ease both; }
+        .stat-box--viz:nth-child(3) { animation: fadeUp .6s .2s ease both; }
+        .stat-box--viz:nth-child(4) { animation: fadeUp .6s .3s ease both; }
+
+        .viz-globe { position:absolute; right:40px; top:100px; width:140px; height:140px; opacity:.12; animation: spinSlow 40s linear infinite; }
+        .viz-bar-wrap { margin-top:12px; background:#e2e8f0; border-radius:99px; height:8px; overflow:hidden; }
+        .viz-bar { height:100%; background:linear-gradient(90deg,#10b981,#0ea5e9); border-radius:99px; animation: growBar 1.5s ease forwards; width:0; }
+
+        .agent-flow { display:flex; align-items:center; justify-content:center; gap:8px; margin:10px 0 18px; padding:14px 20px; background:linear-gradient(90deg,#f0fdf4,#eff6ff); border-radius:16px; border:1px solid #e2e8f0; }
+        .agent-flow__step { text-align:center; flex:1; font-size:11px; font-weight:700; color:#475569; }
+        .agent-flow__icon { width:40px; height:40px; margin:0 auto 6px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; }
+        .agent-flow__arrow { color:#10b981; font-size:20px; font-weight:800; animation: blink 1.5s infinite; }
+        .card--viz { display:flex; flex-direction:column; transition: transform .3s; }
+        .card--viz:hover { transform: translateY(-4px); }
+
+        .bot-hub { display:flex; justify-content:center; gap:20px; margin-bottom:16px; padding:12px; background:#f8fafc; border-radius:16px; border:1px dashed #cbd5e1; }
+        .bot-hub__item { text-align:center; font-size:10px; font-weight:700; color:#64748b; }
+        .bot-hub__circle { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 4px; font-size:20px; }
+
+        .arch-stack { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; max-width:320px; }
+        .arch-layer { display:flex; align-items:center; gap:12px; padding:10px 16px; border-radius:12px; font-size:12px; font-weight:700; color:#fff; animation: fadeUp .5s ease both; }
+        .arch-layer:nth-child(1) { background:linear-gradient(90deg,#10b981,#059669); animation-delay:.1s; }
+        .arch-layer:nth-child(2) { background:linear-gradient(90deg,#0ea5e9,#0284c7); animation-delay:.2s; }
+        .arch-layer:nth-child(3) { background:linear-gradient(90deg,#8b5cf6,#7c3aed); animation-delay:.3s; }
+
+        .funnel-viz { display:flex; flex-direction:column; align-items:center; gap:4px; margin-bottom:12px; }
+        .funnel-step { height:28px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:700; border-radius:6px; animation: fadeUp .5s ease both; }
+        .funnel-step:nth-child(1) { width:100%; background:#10b981; animation-delay:.1s; }
+        .funnel-step:nth-child(2) { width:82%; background:#14b8a6; animation-delay:.2s; }
+        .funnel-step:nth-child(3) { width:64%; background:#0ea5e9; animation-delay:.3s; }
+        .funnel-step:nth-child(4) { width:46%; background:#6366f1; animation-delay:.4s; }
+
+        .compare-viz { display:grid; grid-template-columns:1fr auto 1fr; gap:12px; align-items:center; margin-bottom:14px; }
+        .compare-box { text-align:center; padding:16px; border-radius:16px; font-size:32px; }
+        .compare-box--sm { background:linear-gradient(135deg,#fef3c7,#fde68a); }
+        .compare-box--lg { background:linear-gradient(135deg,#dbeafe,#bfdbfe); }
+        .compare-vs { font-weight:800; color:#10b981; font-size:18px; animation: blink 2s infinite; }
+
+        .project-card { overflow:hidden; padding:0 !important; }
+        .project-card__banner { height:90px; display:flex; align-items:center; justify-content:center; font-size:40px; position:relative; }
+        .project-card__banner--bakery { background:linear-gradient(135deg,#fbbf24,#f59e0b); }
+        .project-card__banner--invest { background:linear-gradient(135deg,#0ea5e9,#6366f1); }
+        .project-card__body { padding:20px; }
+        .project-card__live { position:absolute; top:10px; right:10px; background:#10b981; color:#fff; font-size:9px; font-weight:800; padding:3px 8px; border-radius:99px; animation: blink 2s infinite; }
+
+        .slide-title .title-icon { width:36px; height:36px; color:#10b981; flex-shrink:0; }
+
+        .roi-tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:16px 0; }
+        .roi-tier { padding:18px; border-radius:16px; text-align:center; animation:fadeUp .5s ease both; border:1px solid #e2e8f0; }
+        .roi-tier:nth-child(1) { background:linear-gradient(135deg,#f0fdf4,#dcfce7); animation-delay:.1s; }
+        .roi-tier:nth-child(2) { background:linear-gradient(135deg,#eff6ff,#dbeafe); animation-delay:.2s; }
+        .roi-tier:nth-child(3) { background:linear-gradient(135deg,#faf5ff,#ede9fe); animation-delay:.3s; }
+        .roi-tier__label { font-size:11px; font-weight:700; color:#64748b; text-transform:uppercase; letter-spacing:.04em; margin-bottom:8px; }
+        .roi-tier__range { font-size:22px; font-weight:800; color:#10b981; line-height:1.2; margin-bottom:6px; }
+        .roi-tier__desc { font-size:11px; color:#475569; line-height:1.4; }
+        .roi-perks-banner {
+            display:flex; align-items:center; gap:14px; padding:14px 20px; margin-top:12px;
+            background:linear-gradient(90deg,#ecfdf5,#f0f9ff); border-left:4px solid #10b981; border-radius:0 14px 14px 0;
+            font-size:13px; color:#1e293b; line-height:1.5;
+        }
+        .roi-perks-banner__icon { font-size:28px; flex-shrink:0; }
+        .roi-amplitude-viz { display:flex; align-items:flex-end; gap:10px; height:56px; margin:10px 0 4px; padding:0 20px; }
+        .roi-amp-bar { flex:1; border-radius:8px 8px 0 0; background:linear-gradient(180deg,#10b981,#0ea5e9); animation:growBar 1.2s ease both; }
+        .roi-amp-bar:nth-child(1) { height:28%; --w:100%; animation-delay:.1s; }
+        .roi-amp-bar:nth-child(2) { height:55%; animation-delay:.2s; }
+        .roi-amp-bar:nth-child(3) { height:100%; animation-delay:.3s; }
+
+        @media print {
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+            body { background-color: #f1f5f9 !important; }
+            .slide { margin: 0; box-shadow: none; border: none; width: 297mm; height: 210mm; page-break-after: always; }
+            .slide::before { display: block !important; }
+            .stat-box, .card, .badge, .profile-img-container { break-inside: avoid; }
+        }
+    
+.viewer-bar{position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(90deg,#10b981,#0ea5e9);
+  color:#fff;padding:10px 24px;display:flex;justify-content:space-between;align-items:center;
+  font-family:system-ui,sans-serif;font-size:13px;font-weight:600;box-shadow:0 2px 12px rgba(0,0,0,.12)}
+.viewer-bar a{color:#fff;text-decoration:none;background:rgba(255,255,255,.2);padding:6px 14px;border-radius:8px}
+.viewer-bar a:hover{background:rgba(255,255,255,.35)}
+body{padding-top:48px}
+@media print{.viewer-bar{display:none}body{padding-top:0}}
+
+        .slide-title i.fa-solid, .slide-title i.fa-brands,
+        .card h3 > i.fa-solid, .card h3 > i.fa-brands { display: none; }
+        .title-icon, .v-icon, .v-icon-wrap, .slide-deco, .stat-icon { display: flex !important; }
+        .slide { box-shadow: none; }
+    
+    </style>
+</head>
+<body>
+<div class="viewer-bar"><span>Corporate Presentation</span><a href="gor_sargsyan_sunum_en.pdf" target="_blank">Download PDF</a></div>
+
+
+    <div class="slide" id="slayt1">
+        <div class="slide-header">
+            <div class="brand">GOR <span>SARGSYAN</span></div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="content-area" style="text-align: center; margin: auto 0;">
+            <h1 style="font-size: 56px; color: #0f172a; margin-bottom: 20px; font-weight: 800; line-height: 1.1;">
+                AI Instruments & <br><span style="color: #10b981;">Economic Automation Strategy</span>
+            </h1>
+            <p style="font-size: 22px; color: #475569; max-width: 800px; margin: 0 auto 30px; font-weight: 300;">
+                End-to-End Autonomous Transformation Architecture for Businesses with 15 Years of Macro-Economics and AI Engineering Experience
+            </p>
+            <div style="display: inline-flex; gap: 20px; background: #f1f5f9; padding: 10px 25px; border-radius: 30px; border: 1px solid #e2e8f0; font-weight: 600; font-size: 14px; color: #334155;">
+                <span><i class="fa-solid fa-layer-group" style="color: #10b981;"></i> Corporate Solutions Catalog</span>
+                <span>•</span>
+                <span>Project Projection: 2026</span>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Gor Sargsyan | SargsyanOfLife</span>
+            <span class="footer-links">Slide 01 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide" id="slayt2">
+        <div class="slide-header">
+            <div class="brand">GOR <span>SARGSYAN</span> | PROFILE</div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <h2 class="slide-title"><i class="fa-solid fa-user-tie"></i> Who is Gor Sargsyan?</h2>
+        <div class="grid-2">
+            <div class="profile-img-container">
+                <img src="gor_main_pres.jpg" alt="Gor Sargsyan">
+            </div>
+            <div style="display: flex; flex-direction: column; justify-content: center; gap: 15px;">
+                <h3 style="font-size: 22px; color: #10b981; font-weight: 700;">Economist & AI Solution Architect</h3>
+                <p style="font-size: 15px; color: #475569; line-height: 1.7;">
+                    Gor Sargsyan has specialized in financial analysis, market dynamics and macro-economic modeling over 15+ years. Combining software evolution with AI engineering, he delivers autonomous systems focused on <strong>direct profitability (ROI)</strong>, not just code.
+                </p>
+                <div class="card" style="padding: 15px 20px; background: #eff6ff; border-color: #bfdbfe;">
+                    <h4 style="font-weight: 700; color: #1e40af; font-size: 14px; margin-bottom: 5px;">Education & Academic Background</h4>
+                    <p style="font-size: 13px; color: #1e3a8a; line-height: 1.6;">Graduate of the Economics Department at the National Polytechnic University of Armenia. After building his academic foundation in economics, he completed <strong>AI Engineering</strong> training, uniting both disciplines under one roof.</p>
+                </div>
+                <div class="card" style="padding: 15px 20px; background: #f0fdf4; border-color: #bbf7d0;">
+                    <h4 style="font-weight: 700; color: #166534; font-size: 14px; margin-bottom: 5px;">Global Experience</h4>
+                    <p style="font-size: 13px; color: #14532d;">Designed corporate financial automations, intelligent data models and scalable AI agents across Spain, Russia and Europe.</p>
+                </div>
+                <div class="badge-container">
+                    <span class="badge">NPUA Economics Graduate</span>
+                    <span class="badge">AI Engineer</span>
+                    <span class="badge">15 Years Finance Experience</span>
+                    <span class="badge">AI Solution Architect</span>
+                    <span class="badge">Agentic Workflow</span>
+                    <span class="badge">B2B Marketing Strategy</span>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Contact: gor077887@gmail.com</span>
+            <span class="footer-links">Slide 02 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide slide--rich" id="slayt3">
+        <svg class="slide-deco viz-globe" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="46" stroke="#10b981" stroke-width="2"/><ellipse cx="50" cy="50" rx="46" ry="18" stroke="#0ea5e9" stroke-width="1.5"/><ellipse cx="50" cy="50" rx="18" ry="46" stroke="#0ea5e9" stroke-width="1.5"/><circle cx="30" cy="38" r="3" fill="#10b981"/><circle cx="68" cy="55" r="3" fill="#10b981"/><circle cx="45" cy="72" r="3" fill="#0ea5e9"/></svg>
+        <div class="slide-header">
+            <div class="brand">GOR <span>SARGSYAN</span> | GLOBAL DATA</div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="slide-body">
+            <h2 class="slide-title">
+                <svg class="title-icon anim-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+                Global Success Metrics & Evidence
+            </h2>
+            <div class="grid-4" style="margin: auto 0;">
+                <div class="stat-box stat-box--viz">
+                    <span class="stat-icon anim-float">🔗</span>
+                    <div class="stat-number">24+</div>
+                    <div class="stat-label">Corporate Integration</div>
+                </div>
+                <div class="stat-box stat-box--viz">
+                    <span class="stat-icon anim-float-d1">💶</span>
+                    <div class="stat-number">€140K+</div>
+                    <div class="stat-label">Annual Avg. Client Savings</div>
+                </div>
+                <div class="stat-box stat-box--viz">
+                    <span class="stat-icon anim-float-d2">⚡</span>
+                    <div class="stat-number">98.4%</div>
+                    <div class="stat-label">Autonomous Flow Success</div>
+                </div>
+                <div class="stat-box stat-box--viz">
+                    <span class="stat-icon anim-float">🌍</span>
+                    <div class="stat-number">5 Countries</div>
+                    <div class="stat-label">Global Operations Network</div>
+                </div>
+            </div>
+            <div class="card" style="margin-bottom: 12px;">
+                <p><strong>Marketing & Economics Report:</strong> Developed AI ecosystems automate up to 70% of manual data entry and customer support, permanently lowering operational cost curves.</p>
+                <div class="viz-bar-wrap"><div class="viz-bar" style="--w:70%"></div></div>
+                <p style="font-size:11px;color:#64748b;margin-top:6px;text-align:right;">70% Automation Target</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span class="footer-links">rswtrinvestgroup-alt.github.io</span>
+            <span class="footer-links">Slide 03 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide slide--rich" id="slayt3b">
+        <div class="slide-header">
+            <div class="brand">GOR <span>SARGSYAN</span> | ROI ANALYSIS</div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="slide-body">
+            <h2 class="slide-title">
+                <svg class="title-icon anim-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                ROI Savings Amplitude — Individual to Enterprise
+            </h2>
+            <p style="text-align:center;color:#64748b;font-size:13px;margin:-8px 0 12px;">From solo sellers to large sites and digital marketing teams — annual savings range scales with business size</p>
+            <div class="roi-amplitude-viz">
+                <div class="roi-amp-bar"></div>
+                <div class="roi-amp-bar"></div>
+                <div class="roi-amp-bar"></div>
+            </div>
+            <div class="roi-tiers">
+                <div class="roi-tier">
+                    <div class="roi-tier__label">Small Business / Individual</div>
+                    <div class="roi-tier__range">€24K – €87K</div>
+                    <div class="roi-tier__desc">Solo seller, low inquiry volume, basic automation</div>
+                </div>
+                <div class="roi-tier">
+                    <div class="roi-tier__label">Mid-Scale</div>
+                    <div class="roi-tier__range">€80K – €350K</div>
+                    <div class="roi-tier__desc">Growing site, multi-channel sales and support operations</div>
+                </div>
+                <div class="roi-tier">
+                    <div class="roi-tier__label">Enterprise / Digital Team</div>
+                    <div class="roi-tier__range">€400K – €2M+</div>
+                    <div class="roi-tier__desc">Large site, digital marketing and support team cost optimization</div>
+                </div>
+            </div>
+            <div class="roi-perks-banner">
+                <span class="roi-perks-banner__icon anim-float">🤖</span>
+                <p><strong>AI Agent Advantage:</strong> No payroll costs, no holidays, no salary demands — they work 24/7 without interruption. They convert overnight and weekend inquiries that human teams miss, at no extra cost.</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Projections Based on 100% Real ROI Analysis</span>
+            <span class="footer-links">Slide 04 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide slide--rich" id="slayt4">
+        <div class="slide-header">
+            <div class="brand">AI INSTRUMENTS | <span>AI AGENTS</span></div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="slide-body">
+            <h2 class="slide-title">
+                <svg class="title-icon anim-pulse-ring" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 0 1 7 7c0 2.5-1.5 4.5-3 6l-4 7-4-7c-1.5-1.5-3-3.5-3-6a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2"/></svg>
+                AI Agents and Varieties
+            </h2>
+            <div class="agent-flow">
+                <div class="agent-flow__step"><div class="agent-flow__icon" style="background:#d1fae5;">🧠</div>Collect Data</div>
+                <span class="agent-flow__arrow">→</span>
+                <div class="agent-flow__step"><div class="agent-flow__icon" style="background:#dbeafe;">⚖️</div>Analyze</div>
+                <span class="agent-flow__arrow">→</span>
+                <div class="agent-flow__step"><div class="agent-flow__icon" style="background:#ede9fe;">🎯</div>Decide</div>
+                <span class="agent-flow__arrow">→</span>
+                <div class="agent-flow__step"><div class="agent-flow__icon" style="background:#fef3c7;">🚀</div>Act</div>
+            </div>
+            <div class="grid-3">
+                <div class="card card--viz">
+                    <div class="v-icon-wrap v-icon-wrap--green anim-float"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M12 8v4M10 10h4"/></svg></div>
+                    <h3>Autonomous Sales Agents</h3>
+                    <p>Unlike simple reply bots, they reason through customer budgets and needs, close sales and generate payment links.</p>
+                    <ul>
+                        <li>Dynamic Pricing Capability</li>
+                        <li>Customer Segmentation Analysis</li>
+                        <li>Closing-Focused Dialog Flows</li>
+                    </ul>
+                </div>
+                <div class="card card--viz">
+                    <div class="v-icon-wrap v-icon-wrap--blue anim-float-d1"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8h2M7 12h6"/></svg></div>
+                    <h3>Sector Operations Agents</h3>
+                    <p>Systems handling back-office workloads, e-commerce inventory, logistics routing and financial reconciliation without human intervention.</p>
+                    <ul>
+                        <li>ERP & CRM System Integration</li>
+                        <li>Automatic Anomaly Alerts</li>
+                        <li>Continuous Learning Reporting Cycle</li>
+                    </ul>
+                </div>
+                <div class="card card--viz">
+                    <div class="v-icon-wrap v-icon-wrap--purple anim-float-d2"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                    <h3>Bidirectional Customer Agents</h3>
+                    <p>Autonomous support agents simulating brand identity and FAQ memory in 5 languages with 100% accuracy.</p>
+                    <ul>
+                        <li>0% Missed Overnight Operations</li>
+                        <li>Sentiment Analysis</li>
+                        <li>Instant Solution Generation Cycle</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Strategy: Think → Decide → Act</span>
+            <span class="footer-links">Slide 05 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide slide--rich" id="slayt4b">
+        <div class="slide-header">
+            <div class="brand">AI INSTRUMENTS | <span>SALES & SUPPORT AGENTS</span></div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="slide-body">
+            <h2 class="slide-title">
+                <svg class="title-icon anim-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                Autonomous Sales & Support Agents — Varieties
+            </h2>
+            <p style="text-align:center;color:#64748b;font-size:13px;margin:-8px 0 16px;">Five core agent types configured for your business role and scenario</p>
+            <div class="grid-5">
+                <div class="card card--viz agent-type-slide">
+                    <span class="agent-type-slide__emoji anim-float">🤝</span>
+                    <h3>Assistant Agent</h3>
+                    <p>Personal assistant agents that autonomously manage appointments, follow-ups and daily operations.</p>
+                </div>
+                <div class="card card--viz agent-type-slide">
+                    <span class="agent-type-slide__emoji anim-float-d1">🛡️</span>
+                    <h3>Moderator Agent</h3>
+                    <p>Content filtering, rule enforcement and interaction moderation in communities, groups and channels.</p>
+                </div>
+                <div class="card card--viz agent-type-slide">
+                    <span class="agent-type-slide__emoji anim-float-d2">🎯</span>
+                    <h3>Target Audience Agent</h3>
+                    <p>Marketing agents that analyze customer segments and deliver personalized messages and offers to the right audience.</p>
+                </div>
+                <div class="card card--viz agent-type-slide">
+                    <span class="agent-type-slide__emoji anim-float">📚</span>
+                    <h3>Educator Agent</h3>
+                    <p>Teacher-type agents that deliver product onboarding, user training and interactive learning modules.</p>
+                </div>
+                <div class="card card--viz agent-type-slide">
+                    <span class="agent-type-slide__emoji anim-float-d1">⚖️</span>
+                    <h3>Professional Agent</h3>
+                    <p>Industry-specific expert agents providing professional consulting in finance, legal, healthcare and technical fields.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>24/7 Sales, Support & Training — Unified in One Panel</span>
+            <span class="footer-links">Slide 06 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide slide--rich" id="slayt5">
+        <div class="slide-header">
+            <div class="brand">AI INSTRUMENTS | <span>AI BOTS</span></div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="slide-body">
+            <h2 class="slide-title">
+                <svg class="title-icon anim-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="3"/><path d="M8 15h.01M12 15h.01M16 15h.01"/></svg>
+                AI Bots and Varieties
+            </h2>
+            <div class="bot-hub">
+                <div class="bot-hub__item"><div class="bot-hub__circle anim-float" style="background:#25D366;color:#fff;">💬</div>WhatsApp</div>
+                <div class="bot-hub__item"><div class="bot-hub__circle anim-float-d1" style="background:#0088cc;color:#fff;">✈️</div>Telegram</div>
+                <div class="bot-hub__item"><div class="bot-hub__circle anim-float-d2" style="background:#10b981;color:#fff;">📊</div>CRM</div>
+                <div class="bot-hub__item"><div class="bot-hub__circle anim-float" style="background:#6366f1;color:#fff;">🔔</div>Alert</div>
+            </div>
+            <div class="grid-3">
+                <div class="card card--viz">
+                    <div class="v-icon-wrap v-icon-wrap--green anim-pulse-ring"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></div>
+                    <h3>WhatsApp & Telegram Bots</h3>
+                    <p>Gatekeepers capturing, filtering and collecting traffic from social and messaging channels in the first second.</p>
+                    <ul>
+                        <li>API-Based Official Integrations</li>
+                        <li>Dynamic Menu & Form Designs</li>
+                        <li>Transfer Hot Leads to CRM</li>
+                    </ul>
+                </div>
+                <div class="card card--viz">
+                    <div class="v-icon-wrap v-icon-wrap--cyan anim-float-d1"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg></div>
+                    <h3>Data Collection & Scraping</h3>
+                    <p>Smart bots tracking competitor prices, global trends and financial movements for market analysis.</p>
+                    <ul>
+                        <li>Price Tracking & Competition Analysis</li>
+                        <li>Instant Alert Systems</li>
+                        <li>Unstructured Data Organization</li>
+                    </ul>
+                </div>
+                <div class="card card--viz">
+                    <div class="v-icon-wrap v-icon-wrap--amber anim-float-d2"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></div>
+                    <h3>Trigger & Notification Bots</h3>
+                    <p>Assistants instantly reporting internal operations (stock depletion, high-volume orders, server errors) to admin panels.</p>
+                    <ul>
+                        <li>Instant SMS / WhatsApp Report</li>
+                        <li>Critical Threshold Checks</li>
+                        <li>Automatic Task Assignment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Channel Integrations: @Gor_OffLife_kartvisit_bot</span>
+            <span class="footer-links">Slide 07 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide slide--rich" id="slayt6">
+        <div class="slide-header">
+            <div class="brand">SITE ARCHITECTURE | <span>ENTERPRISE PORTALS</span></div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="slide-body">
+            <h2 class="slide-title">
+                <svg class="title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1" fill="currentColor"/><circle cx="6" cy="18" r="1" fill="currentColor"/></svg>
+                Large-Scale Sites: Front, Back & Admin Office
+            </h2>
+            <div style="display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:start;">
+                <div class="arch-stack">
+                    <div class="arch-layer">🖥️ Front Office — Visitor</div>
+                    <div class="arch-layer">⚙️ Back Office — Data & API</div>
+                    <div class="arch-layer">👤 Admin Panel — Management</div>
+                </div>
+                <div class="grid-3" style="margin:0;">
+                    <div class="card card--viz">
+                        <div class="v-icon-wrap v-icon-wrap--green anim-float"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+                        <h3>Front Office (Visitor Area)</h3>
+                        <p>Ultra-fast, SEO and AI-friendly interface architectures for users.</p>
+                        <ul>
+                            <li>Fast Click Reactions</li>
+                            <li>Dynamic Language Detection</li>
+                            <li>Micro-Interaction UI Polish Rules</li>
+                        </ul>
+                    </div>
+                    <div class="card card--viz">
+                        <div class="v-icon-wrap v-icon-wrap--blue anim-float-d1"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg></div>
+                        <h3>Back Office (Data & Processing Layer)</h3>
+                        <p>The heart of database optimization, API integrations and secure server-side architecture.</p>
+                        <ul>
+                            <li>Advanced Security Protocols</li>
+                            <li>Fast Data Query Structure</li>
+                            <li>Third-Party API Integration Layer</li>
+                        </ul>
+                    </div>
+                    <div class="card card--viz">
+                        <div class="v-icon-wrap v-icon-wrap--purple anim-float-d2"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M16 11h6M19 8v6"/></svg></div>
+                        <h3>Admin Panel (Management Ecosystem)</h3>
+                        <p>AI-powered analytics panels for owners and managers to monitor operations from a single screen.</p>
+                        <ul>
+                            <li>One-Click Financial Report Output</li>
+                            <li>User Role & Permission Management</li>
+                            <li>AI-Powered Forecasting Modules</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Infrastructure: Secure, Scalable, Modular</span>
+            <span class="footer-links">Slide 08 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide slide--rich" id="slayt7">
+        <div class="slide-header">
+            <div class="brand">SITE ARCHITECTURE | <span>E-COMMERCE SYSTEM</span></div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="slide-body">
+            <h2 class="slide-title">
+                <svg class="title-icon anim-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                Next-Gen E-Commerce Systems
+            </h2>
+            <div class="grid-2">
+                <div class="card card--viz">
+                    <div class="v-icon-wrap v-icon-wrap--purple"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.9 5.8H4l4.9 3.6-1.9 5.8L12 14.6l4.9 3.6-1.9-5.8L20 8.8h-6.1z"/></svg></div>
+                    <h3>AI-Powered Conversion Architecture</h3>
+                    <p>Smart e-commerce infrastructures generating instant offers based on visitor behavior, beyond classic cart logic.</p>
+                    <ul>
+                        <li><strong>Cart Abandonment Barrier:</strong> Dynamic AI discount hooks triggered when users leave the site.</li>
+                        <li><strong>Personalized Recommendation:</strong> ML-based storefront layout based on browsing history.</li>
+                        <li><strong>End-to-End Integration:</strong> Full automation with payment systems (Stripe, PayPal) and shipping APIs.</li>
+                    </ul>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:16px;">
+                    <div class="funnel-viz">
+                        <div class="funnel-step">Visitor Traffic</div>
+                        <div class="funnel-step">Product Browsing</div>
+                        <div class="funnel-step">Add to Cart</div>
+                        <div class="funnel-step">Payment ✓</div>
+                    </div>
+                    <div class="stat-box stat-box--viz" style="padding:20px;background:#f0fdf4;border-color:#bbf7d0;text-align:center;">
+                        <span class="stat-icon anim-float">🛒</span>
+                        <div style="font-size:36px;font-weight:700;color:#16a34a;">+34%</div>
+                        <div style="font-size:13px;font-weight:600;color:#14532d;">CART CONVERSION INCREASE</div>
+                        <div class="viz-bar-wrap" style="margin-top:10px;"><div class="viz-bar" style="--w:34%"></div></div>
+                    </div>
+                    <div class="card" style="padding:16px;">
+                        <h4>🌐 One-Click Global Sales</h4>
+                        <p style="font-size:13px;margin-top:5px;">Smart corporate e-commerce updating prices and stock in 5 languages, compliant with local tax regulations (VAT).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Sample Project: hamov-bakery-connect3.lovable.app</span>
+            <span class="footer-links">Slide 09 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide slide--rich" id="slayt8">
+        <div class="slide-header">
+            <div class="brand">SITE ARCHITECTURE | <span>LANDING PAGES</span></div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="slide-body">
+            <h2 class="slide-title">
+                <svg class="title-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Landing Page Differences for Large and Small Businesses
+            </h2>
+            <div class="compare-viz">
+                <div class="compare-box compare-box--sm anim-float">🏪</div>
+                <div class="compare-vs">VS</div>
+                <div class="compare-box compare-box--lg anim-float-d1">🏢</div>
+            </div>
+            <div class="grid-2">
+                <div class="card card--viz" style="border-top:3px solid #f59e0b;">
+                    <div class="v-icon-wrap v-icon-wrap--amber anim-float"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></div>
+                    <h3>Small Businesses (Fast Lead Capture)</h3>
+                    <p>Frictionless CTA-focused structures quickly directing users to WhatsApp or forms.</p>
+                    <ul>
+                        <li>Clear Value Proposition in 3 Seconds Max</li>
+                        <li>Direct Phone & Message Focused Design</li>
+                        <li>Lightweight Code & Maximum Mobile Speed</li>
+                        <li>Budget-Friendly, High-Performance Setups</li>
+                    </ul>
+                </div>
+                <div class="card card--viz" style="border-top:3px solid #0ea5e9;">
+                    <div class="v-icon-wrap v-icon-wrap--blue anim-float-d1"><svg class="v-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M9 22v-4h6v4M8 6h.01M16 6h.01M12 6h.01M8 10h.01M16 10h.01M12 10h.01M8 14h.01M16 14h.01M12 14h.01"/></svg></div>
+                    <h3>Large Enterprises (Authority & Data Integration)</h3>
+                    <p>Corporate prestige landing pages with deep tracking (Pixel, GA4, Server-Side Tagging) and full CRM funnel integration.</p>
+                    <ul>
+                        <li>Multi-Language & Location-Based Dynamic Content</li>
+                        <li>Corporate Trust Elements (Case Studies, Documents)</li>
+                        <li>Interactive Demo (Sandbox) Modules</li>
+                        <li>Flawless Load Balancing Under High Traffic</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Funnel Strategy: Right Scale, Right Budget, Maximum Conversion</span>
+            <span class="footer-links">Slide 10 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide slide--rich" id="slayt9">
+        <div class="slide-header">
+            <div class="brand">GOR <span>SARGSYAN</span> | CASE STUDIES</div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="slide-body">
+            <h2 class="slide-title">
+                <svg class="title-icon anim-float" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                Live Project Examples & Success Stories
+            </h2>
+            <div class="grid-2">
+                <div class="card project-card card--viz">
+                    <div class="project-card__banner project-card__banner--bakery anim-float">
+                        🥖
+                        <span class="project-card__live">LIVE</span>
+                    </div>
+                    <div class="project-card__body">
+                        <strong style="font-size:18px;">Hamov Bakery Integration</strong>
+                        <p style="font-size:14px;line-height:1.6;margin:10px 0 15px;">
+                            AI-powered operational management project connecting production lines and customer demands for the bakery and food retail sector.
+                        </p>
+                        <div style="font-size:12px;color:#64748b;font-weight:600;">LIVE LINK:</div>
+                        <div style="background:#e2e8f0;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;color:#334155;margin-top:4px;">hamov-bakery-connect3.lovable.app</div>
+                    </div>
+                </div>
+                <div class="card project-card card--viz">
+                    <div class="project-card__banner project-card__banner--invest anim-float-d1">
+                        📈
+                        <span class="project-card__live">LIVE</span>
+                    </div>
+                    <div class="project-card__body">
+                        <strong style="font-size:18px;">RSW TR Invest Group Project</strong>
+                        <p style="font-size:14px;line-height:1.6;margin:10px 0 15px;">
+                            Premium corporate portal listing high-budget investments with conversion-focused web infrastructure and success story modules, built on global trust.
+                        </p>
+                        <div style="font-size:12px;color:#64748b;font-weight:600;">LIVE LINK:</div>
+                        <div style="background:#e2e8f0;padding:8px 12px;border-radius:8px;font-family:monospace;font-size:12px;color:#334155;margin-top:4px;">rswtrinvestgroup-alt.github.io/NEW-SITE-PROJECT/#basari-hikayeleri</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Systems Active and Live Globally</span>
+            <span class="footer-links">Slide 11 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide" id="slayt10">
+        <div class="slide-header">
+            <div class="brand">GOR <span>SARGSYAN</span> | TESTIMONIALS</div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <h2 class="slide-title"><i class="fa-solid fa-star"></i> Client Testimonials & Economic Impact</h2>
+        <div class="content-area" style="margin: auto 0; text-align: center;">
+            <div style="font-size: 60px; color: rgba(16, 185, 129, 0.2); line-height: 1; margin-bottom: -10px;">“</div>
+            <blockquote style="font-size: 26px; font-style: italic; color: #1e293b; max-width: 900px; margin: 0 auto 20px; line-height: 1.5; font-weight: 400;">
+                "Thanks to the autonomous sales agent Gor integrated into our business, we converted 34% of overnight customer inquiries into warm orders without additional labor costs. This is exactly economics-based engineering."
+            </blockquote>
+            <p style="font-size: 16px; font-weight: 700; color: #10b981;">— Corporate Sales Director | Madrid, Spain</p>
+            <div style="display: flex; justify-content: center; gap: 5px; color: #fbbf24; margin-top: 15px; font-size: 14px;">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>Based on 100% Real ROI Analysis</span>
+            <span class="footer-links">Slide 12 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide" id="slayt11">
+        <div class="slide-header">
+            <div class="brand">GOR <span>SARGSYAN</span> | NETWORKING</div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <h2 class="slide-title"><i class="fa-solid fa-qrcode"></i> Global Access Channel & Integration Links</h2>
+        <div class="grid-2">
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <div class="card" style="padding: 15px 20px;">
+                    <h3 style="font-size: 15px;"><i class="fa-solid fa-address-card" style="color:#10b981;"></i> Live Digital Business Card Link</h3>
+                    <p style="font-size: 12px; margin-top: 3px; font-family: monospace; color:#0ea5e9;">rswtrinvestgroup-alt.github.io/Gor_dijital_kartvisit/Gor/</p>
+                </div>
+                <div class="card" style="padding: 15px 20px;">
+                    <h3 style="font-size: 15px;"><i class="fa-brands fa-telegram" style="color:#0ea5e9;"></i> 24/7 Active AI Telegram Bot</h3>
+                    <p style="font-size: 12px; margin-top: 3px; font-family: monospace; color:#10b981;">t.me/Gor_OffLife_kartvisit_bot</p>
+                </div>
+                <div class="card" style="padding: 15px 20px;">
+                    <h3 style="font-size: 15px;"><i class="fa-brands fa-x-twitter"></i> Corporate X (Twitter) Profile</h3>
+                    <p style="font-size: 12px; margin-top: 3px; font-family: monospace; color:#64748b;">x.com/laguataa?s=11</p>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <div class="qr-placeholder">
+                    <i class="fa-solid fa-qrcode" style="font-size: 80px; color: #cbd5e1;"></i>
+                </div>
+                <p style="font-size: 12px; color: #64748b; margin-top: 10px; font-weight: 600;">Scan QR Code for Quick Access</p>
+            </div>
+        </div>
+        <div class="slide-footer">
+            <span>SargsyanOfLife Global Network</span>
+            <span class="footer-links">Slide 13 / 14</span>
+        </div>
+    </div>
+
+    <div class="slide" id="slayt12">
+        <div class="slide-header">
+            <div class="brand">GOR <span>SARGSYAN</span> | CONTACT</div>
+            <div class="languages"><span>TR</span><span class="active">EN</span><span>ES</span><span>RU</span><span>HY</span></div>
+        </div>
+        <div class="content-area" style="text-align: center; margin: auto 0;">
+            <h2 style="font-size: 42px; color: #0f172a; margin-bottom: 30px; font-weight: 800;">Join the Autonomous Economy of the Future</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 0 auto; text-align: left;">
+                <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <span style="font-size:12px; color:#94a3b8; font-weight:700; display:block;">SPAIN OFFICE</span>
+                    <strong style="font-size:16px; color:#1e293b;"><i class="fa-solid fa-phone" style="color:#10b981;"></i> +34 678 27 66 26</strong>
+                </div>
+                <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <span style="font-size:12px; color:#94a3b8; font-weight:700; display:block;">RF & WHATSAPP</span>
+                    <strong style="font-size:16px; color:#1e293b;"><i class="fa-brands fa-whatsapp" style="color:#10b981;"></i> +7 922 091 82 18</strong>
+                </div>
+                <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <span style="font-size:12px; color:#94a3b8; font-weight:700; display:block;">TELEGRAM DIRECT</span>
+                    <strong style="font-size:16px; color:#1e293b;"><i class="fa-brands fa-telegram" style="color:#0ea5e9;"></i> @SargsyanOfLife</strong>
+                </div>
+                <div style="background: #f8fafc; padding: 15px 25px; border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <span style="font-size:12px; color:#94a3b8; font-weight:700; display:block;">CORPORATE EMAIL</span>
+                    <strong style="font-size:16px; color:#1e293b;"><i class="fa-solid fa-envelope" style="color:#0ea5e9;"></i> gor077887@gmail.com</strong>
+                </div>
+            </div>
+            <p style="margin-top: 40px; color: #10b981; font-weight: 700; font-size: 16px; letter-spacing: 1px; text-transform: uppercase;">
+                🚀 Contact Us for a Free 15-Minute Project Discovery Call
+            </p>
+        </div>
+        <div class="slide-footer">
+            <span>© 2026 SargsyanOfLife | All Rights Reserved.</span>
+            <span class="footer-links">Slide 14 / 14</span>
+        </div>
+    </div>
+
+</body>
+</html>
