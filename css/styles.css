@@ -1472,6 +1472,17 @@ ul { list-style: none; }
   white-space: pre-line;
 }
 
+.chat-msg--bot a {
+  color: var(--primary);
+  text-decoration: underline;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.chat-msg--bot a:hover {
+  opacity: 0.85;
+}
+
 .chat-msg--user {
   background: var(--primary);
   color: #fff;

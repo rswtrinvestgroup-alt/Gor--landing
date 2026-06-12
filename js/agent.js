@@ -2,6 +2,17 @@ const TELEGRAM_BOT_USERNAME = window.GOR_TELEGRAM?.botUsername || 'Gor_OffLife_k
 const TELEGRAM_BOT_URL = `https://t.me/${TELEGRAM_BOT_USERNAME}`;
 const TELEGRAM_LEAD_API = window.GOR_TELEGRAM?.leadApi || '/api/telegram-lead';
 
+const CONTACT = {
+  email: 'gor077887@gmail.com',
+  phoneEs: '+34678276626',
+  phoneEsDisplay: '+34 678 27 66 26',
+  phoneRu: '+79220918218',
+  phoneRuDisplay: '+7 922 091 82 18',
+  whatsapp: 'https://wa.me/79220918218',
+  telegramBot: TELEGRAM_BOT_URL,
+  telegramDirect: 'https://t.me/SargsyanOfLife'
+};
+
 const MSG = {
   welcome: {
     tr: 'Merhaba! 👋 Ben Gor Sargsyan ekibinin AI satış mühendisiyim. Ekonomi ve yapay zeka mühendisliği geçmişiyle işletmelere ölçülebilir ROI sunuyoruz.\n\nBurada rahatça sohbet edebilirsiniz — sorularınızı yanıtlarım, ihtiyacınızı birlikte netleştiririz. Sonra size özel rapor veya geri arama için iletişim bilgisi isteyebilirim.\n\nBaşlamak için adınızı yazar mısınız?',
@@ -116,11 +127,39 @@ const MSG = {
     hy: 'Գինը ըստ մասշտաբի։ 30 օրյա փայլոտ չափելի KPI-ներով։'
   },
   humanSoft: {
-    tr: 'Tabii ki! Gor veya ekibiyle doğrudan görüşmek isterseniz size geri arama ayarlayabilirim — ad ve telefon/e-posta yeterli.\n\nAcil durumda:\n📧 gor077887@gmail.com\n🇪🇸 +34 678 27 66 26\n🇷🇺 +7 922 091 82 18\n\nÖnce buradan devam etmek isterseniz de memnuniyetle yardımcı olurum.',
-    en: 'Of course! I can schedule a callback — just share name and phone/email.\n\nUrgent:\n📧 gor077887@gmail.com\n🇪🇸 +34 678 27 66 26\n🇷🇺 +7 922 091 82 18\n\nHappy to continue here too.',
-    es: '¡Por supuesto! Puedo programar una llamada. Urgente: gor077887@gmail.com',
-    ru: 'Конечно! Могу организовать звонок. Срочно: gor077887@gmail.com, +34 678 27 66 26',
-    hy: 'Իհարկե! Կարող եմ կազմակերպել զանգ։ gor077887@gmail.com'
+    tr: 'Tabii ki! Gor veya ekibiyle doğrudan görüşebilirsiniz. Aşağıdaki kanallara tıklayın veya ad + telefon/e-postanızı bu sohbet kutusuna yazın — size geri dönelim.',
+    en: 'Of course! You can reach Gor directly. Tap the links below, or type your name + phone/email in this chat for a callback.',
+    es: '¡Por supuesto! Puede contactar a Gor directamente. Toque los enlaces o escriba nombre + teléfono/email aquí.',
+    ru: 'Конечно! Свяжитесь с Gor напрямую — ссылки ниже. Или напишите имя + телефон/email в этом чате.',
+    hy: 'Իհարկե! Կարող եք ուղղակի կապվել Gor-ի հետ։ Սեղմեք ստորևի հղումները կամ գրեք անուն + հեռախոս/email այստեղ։'
+  },
+  contactLinksIntro: {
+    tr: 'Gor ekibine ulaşabileceğiniz kanallar (tıklayın):',
+    en: 'Ways to reach Gor (tap to open):',
+    es: 'Canales de contacto (pulse para abrir):',
+    ru: 'Каналы связи (нажмите):',
+    hy: 'Կապի հղումներ (սեղմեք բացելու համար).'
+  },
+  contactWhere: {
+    tr: 'Ad ve telefon/e-postanızı **bu sohbet kutusuna** — alttaki yazı alanına yazmanız yeterli. Örn: Anush, +90 535 248 5800',
+    en: 'Type your name and phone/email **in this chat box** below. e.g. Anush, +90 535 248 5800',
+    es: 'Escriba nombre y teléfono/email **en este cuadro de chat** abajo.',
+    ru: 'Напишите имя и телефон/email **в это поле чата** внизу.',
+    hy: 'Անունը և հեռախոսը/email-ը գրեք **այստեղ**՝ ներքևի տեքստային դաշտում։ Օր.՝ Anush, +90 535 248 5800'
+  },
+  alreadyReceived: {
+    tr: 'Evet{name}, bilgilerinizi aldım ({contact}). Gor 24 saat içinde dönecek. Acil için aşağıdaki kanalları kullanabilirsiniz:',
+    en: 'Yes{name}, I have your details ({contact}). Gor will respond within 24 hours. For urgent matters, use the links below:',
+    es: 'Sí{name}, recibí sus datos ({contact}). Gor responderá en 24 h. Enlaces urgentes abajo:',
+    ru: 'Да{name}, данные получены ({contact}). Gor ответит в течение 24 ч. Ссылки ниже:',
+    hy: 'Այո{name}, արդեն ստացել եմ ({contact})։ Gor-ը 24 ժամում կկապվի։ Արագ կապի հղումներ.'
+  },
+  invalidName: {
+    tr: 'Lütfen gerçek adınızı yazın (ör. Ahmet) — rastgele harfler yerine.',
+    en: 'Please type your real name (e.g. John), not random letters.',
+    es: 'Escriba su nombre real (ej. Juan), no letras al azar.',
+    ru: 'Напишите настоящее имя (напр. Иван), а не случайные буквы.',
+    hy: 'Գրեք իրական անունը (օր.՝ Anush), ոչ թե պատահական տառեր։'
   },
   telegramOptional: {
     tr: 'Tabii — ama yeni bir bot değil, zaten kullandığımız @Gor_OffLife_kartvisit_bot açılır. Web sohbetiniz aynı oturum koduyla oraya bağlanır.\n\nİsterseniz burada kalmaya da devam edebilirsiniz. Telegram\'a geçmemi ister misiniz?',
@@ -142,6 +181,13 @@ const MSG = {
     es: '¡Hola! ¿En qué puedo ayudarle?',
     ru: 'Здравствуйте! Чем могу помочь?',
     hy: 'Բարև! Ինչպե՞ս կարող եմ օգնել։'
+  },
+  askNamePrompt: {
+    tr: 'Başlamak için adınızı yazmanız yeterli. 😊',
+    en: 'Just type your name to get started. 😊',
+    es: 'Escriba su nombre para comenzar. 😊',
+    ru: 'Напишите ваше имя, чтобы начать. 😊',
+    hy: 'Սկսելու համար գրեք ձեր անունը։ 😊'
   },
   yesReport: {
     tr: 'Harika seçim! Ücretsiz ROI raporu için adınızı ve e-posta veya telefon numaranızı yazın.',
@@ -213,10 +259,90 @@ class SalesAgent {
   fmt(text, vars = {}) {
     let out = text;
     const name = this.leadData.name ? `, ${this.leadData.name}` : '';
-    out = out.replace('{name}', vars.name ?? this.leadData.name || '');
+    out = out.replace('{name}', vars.name ?? (this.leadData.name || ''));
     out = out.replace('{name!}', name);
     out = out.replace('{range}', vars.range ?? '');
+    out = out.replace('{contact}', vars.contact ?? (this.leadData.contact || ''));
+    out = out.replace('{session}', vars.session ?? this.sessionId);
     return out;
+  }
+
+  kb(topic) {
+    if (typeof getPresentationAnswer === 'function') {
+      return getPresentationAnswer(topic, currentLang);
+    }
+    return '';
+  }
+
+  addBotMessageHtml(html) {
+    this.showTyping(() => {
+      const div = document.createElement('div');
+      div.className = 'chat-msg chat-msg--bot';
+      div.innerHTML = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      this.messagesEl.appendChild(div);
+      this.scrollToBottom();
+    });
+  }
+
+  buildContactLinksHtml() {
+    const intro = this.m('contactLinksIntro');
+    const links = [
+      { href: CONTACT.whatsapp, label: '💬 WhatsApp', text: CONTACT.phoneRuDisplay },
+      { href: CONTACT.telegramBot, label: '✈️ Telegram Bot', text: '@' + TELEGRAM_BOT_USERNAME },
+      { href: CONTACT.telegramDirect, label: '✈️ Telegram', text: '@SargsyanOfLife' },
+      { href: 'mailto:' + CONTACT.email, label: '📧 Email', text: CONTACT.email },
+      { href: 'tel:' + CONTACT.phoneEs, label: '🇪🇸 España', text: CONTACT.phoneEsDisplay }
+    ];
+    const items = links.map(l =>
+      `<a href="${l.href}" target="_blank" rel="noopener noreferrer">${l.label}: ${l.text}</a>`
+    ).join('<br>');
+    const presPath = (typeof PRESENTATION_HTML !== 'undefined' && PRESENTATION_HTML[currentLang]) || 'assets/presentations/sunum_tr.html';
+    const presLabel = { tr: 'Sunumu Görüntüle', en: 'View Presentation', es: 'Ver Presentación', ru: 'Смотреть презентацию', hy: 'Դիտել Ներկայացում' };
+    const pres = `<br><br><a href="${presPath}" target="_blank" rel="noopener">📊 ${presLabel[currentLang] || presLabel.tr}</a>`;
+    return `${intro}<br><br>${items}${pres}`;
+  }
+
+  showContactLinks() {
+    this.addBotMessageHtml(this.buildContactLinksHtml());
+  }
+
+  isContactQuestion(lower) {
+    return /telefon|phone|heraxos|հեռախոս|link|həng|ktak|verin|gönder|nomer|номер|звон|զանգ|kapnvel|կապվել|կապ|contact|iletişim|iletişime|nasıl ulaş|how to reach|inchpes|inçpes|karox em|where.*(write|contact)|nereye yaz|vortex|sexmem|sexem|ներս|գրեմ|նամակ/i.test(lower);
+  }
+
+  isAlreadyGave(lower) {
+    return /arden tvel|arden verdim|zaten verdim|already gave|already sent|արդեն տվել|տվել եմ|verdim|gönderdim/i.test(lower);
+  }
+
+  isGibberishName(text) {
+    const t = text.trim();
+    if (t.length < 4) return false;
+    if (/^[a-zA-Z]+$/.test(t) && !/[aeiouAEIOUüöıÜÖİáéíóú]/.test(t)) return true;
+    if (/[bcdfghjklmnpqrstvwxyz]{5,}/i.test(t)) return true;
+    return false;
+  }
+
+  tryAcceptContact(text) {
+    if (!this.looksLikeContact(text)) return false;
+    const allowed = ['welcome', 'consult', 'collect_contact', 'done', 'ask_business', 'ask_volume', 'ask_team', 'ask_goal'];
+    if (!allowed.includes(this.step)) return false;
+    this.parseContact(text);
+    if (!this.leadData.business) this.leadData.business = '—';
+    if (!this.leadData.goal) this.leadData.goal = '—';
+    this.saveLead();
+    this.completeLeadHandoff();
+    return true;
+  }
+
+  answerFromPresentation(topic) {
+    const text = this.kb(topic);
+    if (text) {
+      this.addBotMessage(text);
+      this.step = 'consult';
+      this.renderQuickButtons('consult');
+      return true;
+    }
+    return false;
   }
 
   startConversation() {
@@ -308,14 +434,15 @@ class SalesAgent {
   }
 
   detectIntent(lower) {
+    if (this.isAlreadyGave(lower)) return 'alreadyGave';
+    if (this.isContactQuestion(lower)) return 'contact';
     if (/buradan|burda|here|aquí|здесь|այստեղ|olmaz mı|devam|continue|seguir|продолж/i.test(lower)) return 'stayHere';
     if (/telegram|телеграм|✈️|t\.me/i.test(lower) && !/buradan|here|aquí/i.test(lower)) return 'telegram';
-    if (/insan|human|humano|человек|մարդ|gor\b|geri arama|callback|call me/i.test(lower)) return 'human';
-    if (/ajan|agent|bot|asistan|moderator|eğitici|mesleki|satış ajan/i.test(lower)) return 'agents';
-    if (/roi|tasarruf|ahorro|эконом|խնայ|rapor|report|informe/i.test(lower)) return 'roi';
-    if (/crm|salesforce|hubspot|bitrix|entegrasyon|integrat/i.test(lower)) return 'crm';
-    if (/fiyat|ücret|price|pricing|precio|стоимость|գին|maliyet|cost/i.test(lower)) return 'pricing';
-    if (/pilot|süre|hafta|week|timeline|ne kadar|how long|cuánto tarda/i.test(lower)) return 'pilot';
+    if (/insan|human|humano|человек|մարդ|gor\b|geri arama|callback|call me|zang|զանգ/i.test(lower)) return 'human';
+    if (typeof matchPresentationTopic === 'function') {
+      const topic = matchPresentationTopic(lower);
+      if (topic) return 'kb:' + topic;
+    }
     if (/merhaba|hello|hola|здравств|բարև|selam|hey|günaydın|iyi günler/i.test(lower) && lower.length < 40) return 'greeting';
     if (/evet|yes|sí|да|այո|istiyorum|isterim|rapor|report|ücretsiz|free|gratis/i.test(lower) && this.step === 'consult') return 'wantReport';
     if (/hayır|no|не|ոչ|sonra|later|şimdilik/i.test(lower)) return 'decline';
@@ -323,16 +450,47 @@ class SalesAgent {
   }
 
   answerIntent(intent) {
+    if (intent && intent.startsWith('kb:')) {
+      const topic = intent.slice(3);
+      if (this.answerFromPresentation(topic)) {
+        this.fallbackCount = 0;
+        return true;
+      }
+    }
+
     const handlers = {
+      alreadyGave: () => {
+        if (!this.leadData.contact) this.tryRecoverContactFromHistory();
+        if (this.leadData.contact) {
+          if (this.step === 'done') {
+            this.addBotMessage(this.fmt(this.m('alreadyReceived')));
+            this.showContactLinks();
+          } else {
+            this.completeLeadHandoff();
+          }
+        } else {
+          this.addBotMessage(this.m('contactWhere'));
+          this.showContactLinks();
+        }
+      },
+      contact: () => {
+        this.addBotMessage(this.m('humanSoft'));
+        this.showContactLinks();
+        if (this.step === 'welcome') this.step = 'consult';
+      },
       stayHere: () => { this.addBotMessage(this.m('stayHere')); this.step = 'consult'; this.renderQuickButtons('consult'); },
       telegram: () => { this.addBotMessage(this.m('telegramOptional')); this.step = 'consult'; },
-      human: () => { this.addBotMessage(this.m('humanSoft')); this.step = 'collect_contact'; },
-      agents: () => { this.addBotMessage(this.m('agentsExplain')); this.step = 'consult'; this.renderQuickButtons('consult'); },
-      roi: () => { this.addBotMessage(this.m('roiExplain')); this.step = 'consult'; this.renderQuickButtons('consult'); },
-      crm: () => { this.addBotMessage(this.m('crmExplain')); this.step = 'consult'; },
-      pricing: () => { this.addBotMessage(this.m('pricingExplain')); this.step = 'consult'; },
-      pilot: () => { this.addBotMessage(this.m('pilotExplain')); this.step = 'consult'; },
-      greeting: () => { this.addBotMessage(this.m('greetBack')); },
+      human: () => {
+        this.addBotMessage(this.m('humanSoft'));
+        this.showContactLinks();
+        this.step = 'collect_contact';
+      },
+      greeting: () => {
+        this.addBotMessage(this.m('greetBack'));
+        if (this.step === 'welcome') {
+          setTimeout(() => this.addBotMessage(this.m('askNamePrompt')), 600);
+        }
+      },
       wantReport: () => { this.addBotMessage(this.m('yesReport')); this.step = 'collect_contact'; },
       decline: () => { this.addBotMessage(this.step === 'consult' ? this.m('greetBack') : this.m('clarify')); }
     };
@@ -340,6 +498,20 @@ class SalesAgent {
       handlers[intent]();
       this.fallbackCount = 0;
       return true;
+    }
+    return false;
+  }
+
+  tryRecoverContactFromHistory() {
+    if (!this.messagesEl) return false;
+    const userMsgs = Array.from(this.messagesEl.querySelectorAll('.chat-msg--user'))
+      .map(el => el.textContent.trim());
+    for (let i = userMsgs.length - 1; i >= 0; i--) {
+      if (this.looksLikeContact(userMsgs[i])) {
+        this.parseContact(userMsgs[i]);
+        this.saveLead();
+        return true;
+      }
     }
     return false;
   }
@@ -353,21 +525,46 @@ class SalesAgent {
       return;
     }
 
+    if (this.tryAcceptContact(text)) return;
+
     const intent = this.detectIntent(lower);
     if (intent && this.answerIntent(intent)) return;
 
     if (this.step === 'collect_contact' || this.step === 'done') {
+      if (this.isContactQuestion(lower)) {
+        this.addBotMessage(this.m('contactWhere'));
+        this.showContactLinks();
+        return;
+      }
+      if (this.isAlreadyGave(lower) && this.leadData.contact) {
+        this.addBotMessage(this.fmt(this.m('alreadyReceived')));
+        this.showContactLinks();
+        return;
+      }
       if (this.looksLikeContact(text)) {
         this.parseContact(text);
         this.saveLead();
         this.completeLeadHandoff();
         return;
       }
+      if (typeof matchPresentationTopic === 'function') {
+        const topic = matchPresentationTopic(lower);
+        if (topic && this.answerFromPresentation(topic)) return;
+      }
       this.addBotMessage(this.m('offerContact'));
       return;
     }
 
     if (this.step === 'welcome' || this.step === 'ask_name') {
+      if (this.isContactQuestion(lower)) {
+        this.addBotMessage(this.m('humanSoft'));
+        this.showContactLinks();
+        return;
+      }
+      if (this.isGibberishName(text)) {
+        this.addBotMessage(this.m('invalidName'));
+        return;
+      }
       if (this.isLikelyName(text)) {
         this.leadData.name = this.capitalize(text.split(/[,]/)[0].trim());
         this.addBotMessage(this.m('askBusiness').replace('{name}', `, ${this.leadData.name}`));
@@ -417,6 +614,10 @@ class SalesAgent {
     }
 
     if (this.step === 'consult') {
+      if (typeof matchPresentationTopic === 'function') {
+        const topic = matchPresentationTopic(lower);
+        if (topic && this.answerFromPresentation(topic)) return;
+      }
       this.fallbackCount++;
       if (this.fallbackCount === 1) {
         this.addBotMessage(this.m('clarify'));
@@ -424,6 +625,7 @@ class SalesAgent {
       }
       if (this.fallbackCount === 2) {
         this.addBotMessage(this.m('humanSoft'));
+        this.showContactLinks();
         this.step = 'collect_contact';
         return;
       }
@@ -432,12 +634,20 @@ class SalesAgent {
       return;
     }
 
+    if (typeof matchPresentationTopic === 'function') {
+      const topic = matchPresentationTopic(lower);
+      if (topic && this.answerFromPresentation(topic)) return;
+    }
+
     this.fallbackCount++;
     this.addBotMessage(this.m('clarify'));
   }
 
   isLikelyName(text) {
     const t = text.trim();
+    const lower = t.toLowerCase();
+    if (/^(merhaba|selam|hello|hi|hey|hola|bonjour|բարև|здравств)/i.test(lower)) return false;
+    if (/^(roi|satış|ajan|telegram|insan|bilgi|yardım|help)/i.test(lower)) return false;
     return t.length >= 2 && t.length <= 40 && !/\d{3}/.test(t) && !/@/.test(t);
   }
 
@@ -456,8 +666,14 @@ class SalesAgent {
     const phone = text.match(/\+?\d[\d\s-]{6,}/);
     if (email) this.leadData.email = email[0];
     if (phone) this.leadData.phone = phone[0].replace(/\s/g, '');
-    const namePart = text.split(/[,@+\d]/)[0].trim();
-    if (namePart.length > 1 && !this.leadData.name) this.leadData.name = this.capitalize(namePart);
+    let namePart = text
+      .replace(/\+?\d[\d\s-]{6,}/g, '')
+      .replace(/[\w.+-]+@[\w.-]+\.\w+/g, '')
+      .trim();
+    namePart = namePart.split(/\s+/)[0];
+    if (namePart.length >= 2 && namePart.length <= 30 && !this.isGibberishName(namePart)) {
+      this.leadData.name = this.capitalize(namePart);
+    }
   }
 
   estimateRange(leads, team) {
@@ -520,14 +736,9 @@ class SalesAgent {
     this.showTyping(() => {
       this.forwardLeadToTelegram().then(sent => {
         const key = sent ? 'thanks' : 'thanksFallback';
-        const text = this.m(key)
-          .replace('{name}', this.leadData.name || '')
-          .replace('{session}', this.sessionId);
-        const div = document.createElement('div');
-        div.className = 'chat-msg chat-msg--bot';
-        div.textContent = text;
-        this.messagesEl.appendChild(div);
-        this.scrollToBottom();
+        const text = this.fmt(this.m(key));
+        this.addBotMessage(text);
+        setTimeout(() => this.showContactLinks(), 800);
         this.step = 'done';
         this.renderQuickButtons('done');
       });

@@ -98,6 +98,10 @@ function initChat() {
     e.preventDefault();
     const text = input.value.trim();
     if (!text) return;
+    if (!window.salesAgent) {
+      console.error('salesAgent yüklenemedi — js/agent.js kontrol edin.');
+      return;
+    }
     salesAgent.addUserMessage(text);
     input.value = '';
     salesAgent.processMessage(text);
