@@ -4,11 +4,11 @@
  */
 const PRESENTATION_KB = {
   about: {
-    tr: 'Gor Sargsyan, 15+ yıl finansal analiz, pazar dinamikleri ve makro-ekonomik modelleme alanında uzmanlaşmış ekonomist ve AI çözüm mimarıdır. Ermenistan Devlet Politeknik Üniversitesi Ekonomi mezunu; Yapay Zeka Mühendisliği eğitimiyle iki disiplini birleştirir. İspanya, Rusya ve Avrupa genelinde kurumsal finans otomasyonları ve ölçeklenebilir AI ajanları kurgulamıştır.',
-    en: 'Gor Sargsyan is an economist and AI solution architect with 15+ years in financial analysis, market dynamics and macro-economic modeling. NPUA Economics graduate with AI Engineering training. He designs corporate automations and scalable AI agents across Spain, Russia and Europe.',
-    es: 'Gor Sargsyan es economista y arquitecto de soluciones IA con más de 15 años en análisis financiero y modelado macroeconómico. Graduado en Economía (NPUA) con formación en Ingeniería de IA. Opera en España, Rusia y Europa.',
-    ru: 'Gor Sargsyan — экономист и архитектор ИИ-решений с 15+ летним опытом в финансовом анализе и макроэкономическом моделировании. Выпускник экономфака НПУА, инженер ИИ. Работает в Испании, России и Европе.',
-    hy: 'Gor Sargsyan-ը 15+ տարվա փորձ ունի ֆինանսական վերլուծության, շուկայի դինամիկայի և մակրո-տնտեսական մոդելավորման մեջ։ ՀՊՀ տնտեսաբանության և AI ճարտարագիտության կրթություն։ Գործում է Իսպանիայում, Ռուսաստանում և Եվրոպայում։'
+    tr: 'Gor Sargsyan, finansal analiz, pazar dinamikleri ve makro-ekonomik modelleme alanında uzmanlaşmış ekonomist ve AI çözüm mimarıdır. Ermenistan Devlet Politeknik Üniversitesi Ekonomi mezunu; Yapay Zeka Mühendisliği eğitimiyle iki disiplini birleştirir. İspanya, Rusya ve Avrupa genelinde kurumsal finans otomasyonları ve ölçeklenebilir AI ajanları kurgulamıştır.',
+    en: 'Gor Sargsyan is an economist and AI solution architect specializing in financial analysis, market dynamics and macro-economic modeling. NPUA Economics graduate with AI Engineering training. He designs corporate automations and scalable AI agents across Spain, Russia and Europe.',
+    es: 'Gor Sargsyan es economista y arquitecto de soluciones IA especializado en análisis financiero y modelado macroeconómico. Graduado en Economía (NPUA) con formación en Ingeniería de IA. Opera en España, Rusia y Europa.',
+    ru: 'Gor Sargsyan — экономист и архитектор ИИ-решений, специализирующийся на финансовом анализе и макроэкономическом моделировании. Выпускник экономфака НПУА, инженер ИИ. Работает в Испании, России и Европе.',
+    hy: 'Gor Sargsyan-ը մասնագիտացել է ֆինանսական վերլուծության, շուկայի դինամիկայի և մակրո-տնտեսական մոդելավորման մեջ։ ՀՊՀ տնտեսաբանության և AI ճարտարագիտության կրթություն։ Գործում է Իսպանիայում, Ռուսաստանում և Եվրոպայում։'
   },
   stats: {
     tr: 'Sunum verilerine göre kanıtlanmış sonuçlar:\n• 24+ kurumsal AI entegrasyonu\n• €24K – €2M+ yıllık ROI tasarruf amplitüdü\n• %98,4 otonom akış başarısı\n• 5 ülkede küresel operasyon\n• %70\'e varan operasyon otomasyonu (veri girişi ve destek)\n• Geceden gelen taleplerin %34\'ü ek insan gücü olmadan sıcak lead\'e dönüşür (Madrid referansı)',
