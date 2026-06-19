@@ -11,7 +11,7 @@ const TRANSLATIONS = {
     'hero.subtitle': 'I combine global finance and macro-economics expertise with next-generation autonomous systems. I don\'t just write code for your business — I design AI architectures that permanently reduce saved costs and directly trigger profitability (ROI).',
     'hero.edu1': '🎓 National Polytechnic University of Armenia — Economics Graduate',
     'hero.edu2': '🤖 Completed AI Engineering Training',
-    'hero.btnA': 'Launch 24/7 Active AI Bot',
+    'hero.btnA': 'Start AI ROI & Bottleneck Analysis',
     'hero.btnB': 'View Corporate Presentation',
     'hero.btnC': 'View My Digital Business Card',
     'hero.trust': 'Trusted platforms:',
@@ -120,7 +120,7 @@ const TRANSLATIONS = {
     'hero.subtitle': 'Combino finanzas globales y conocimiento macroeconómico con sistemas autónomos de próxima generación. No solo escribo código para su negocio; diseño arquitecturas de IA que reducen permanentemente los costos y activan directamente la rentabilidad (ROI).',
     'hero.edu1': '🎓 Universidad Politécnica Estatal de Armenia — Graduado en Economía',
     'hero.edu2': '🤖 Formación en Ingeniería de IA Completada',
-    'hero.btnA': 'Iniciar Bot IA Activo 24/7',
+    'hero.btnA': 'Iniciar Análisis ROI y Cuellos de Botella con IA',
     'hero.btnB': 'Ver Presentación Corporativa',
     'hero.btnC': 'Ver Mi Tarjeta Digital',
     'hero.trust': 'Plataformas de confianza:',
@@ -229,7 +229,7 @@ const TRANSLATIONS = {
     'hero.subtitle': 'Я объединяю глобальные финансы и макроэкономическую экспертизу с автономными системами нового поколения. Я не просто пишу код — я проектирую ИИ-архитектуры, которые навсегда снижают затраты и напрямую повышают прибыльность (ROI).',
     'hero.edu1': '🎓 Гос. политехнический ун-т Армении — выпускник экономического факультета',
     'hero.edu2': '🤖 Прошёл обучение по инженерии ИИ',
-    'hero.btnA': 'Запустить ИИ Бота 24/7',
+    'hero.btnA': 'Начать ROI-анализ и диагностику узких мест',
     'hero.btnB': 'Открыть Корпоративную Презентацию',
     'hero.btnC': 'Моя Цифровая Визитка',
     'hero.trust': 'Надёжные платформы:',
@@ -338,7 +338,7 @@ const TRANSLATIONS = {
     'hero.subtitle': 'Ես միավորում եմ գլոբալ ֆինանսների և մակրո-տնտեսական փորձագիտությունը հաջորդ սերնդի ինքնավար համակարգերի հետ։ Ես պարզապես կոդ չեմ գրում՝ նախագծում եմ AI ճարտարապետություն, որ մշտապես նվազեցնում է ծախսերը և ուղղակիորեն ակտիվացնում ROI-ն։',
     'hero.edu1': '🎓 Հայաստանի Պետական Պոլիտեխնիկական Համալսարան — Տնտեսաբանության բաժնի շրջանցու',
     'hero.edu2': '🤖 Ավարտել է Արհեստական Բանականության Ճարտարագիտության կրթությունը',
-    'hero.btnA': 'Գործարկել 24/7 AI Բոտ',
+    'hero.btnA': 'Սկսել AI ROI և Բարդությունների Վերլուծությունը',
     'hero.btnB': 'Դիտել Կորպորատիվ Ներկայացում',
     'hero.btnC': 'Իմ Թվային Այցեքարտ',
     'hero.trust': 'Վստահելի հարթակներ՝',
@@ -447,7 +447,7 @@ const TRANSLATIONS = {
     'hero.subtitle': 'Küresel finans ve makro-ekonomi uzmanlığını ileri nesil otonom sistemlerle birleştiriyorum. İşletmeniz için sadece kod yazmıyorum; kaydedilen maliyetleri kalıcı olarak düşüren ve doğrudan kârlılığı (ROI) tetikleyen yapay zeka mimarileri tasarlıyorum.',
     'hero.edu1': '🎓 Ermenistan Devlet Politeknik Üniversitesi — Ekonomi Bölümü Mezunu',
     'hero.edu2': '🤖 Yapay Zeka Mühendisliği Eğitimi Tamamlanmış',
-    'hero.btnA': '7/24 Aktif AI Botu Başlat',
+    'hero.btnA': 'Yapay Zeka ile ROI ve Darboğaz Analizi Başlat',
     'hero.btnB': 'Kurumsal Sunumu Görüntüle',
     'hero.btnC': 'Dijital Kartvizitimi İnceleyin',
     'hero.trust': 'Güvenilen platformlar:',
@@ -595,6 +595,27 @@ function t(key, lang) {
 
 let currentLang = localStorage.getItem('gor-lang') || 'tr';
 
+const TELEGRAM_DEEP_LINK_CAMPAIGNS = {
+  tr: 'roi_tr',
+  en: 'roi_en',
+  es: 'roi_es',
+  ru: 'roi_ru',
+  hy: 'roi_hy'
+};
+
+function getTelegramDeepLink(lang) {
+  const l = (lang || currentLang || 'tr').toLowerCase();
+  const campaign = TELEGRAM_DEEP_LINK_CAMPAIGNS[l] || 'roi_lp';
+  return `https://t.me/Gor_OffLife_kartvisit_bot?start=${campaign}`;
+}
+
+function updateTelegramDeepLinks(lang) {
+  const url = getTelegramDeepLink(lang);
+  document.querySelectorAll('[data-telegram-deep-link]').forEach(el => {
+    el.setAttribute('href', url);
+  });
+}
+
 function setLanguage(lang) {
   if (!TRANSLATIONS[lang]) return;
   currentLang = lang;
@@ -621,6 +642,7 @@ function setLanguage(lang) {
   });
 
   updatePresentationLinks(lang);
+  updateTelegramDeepLinks(lang);
 
   if (typeof window.onLanguageChange === 'function') {
     window.onLanguageChange(lang);

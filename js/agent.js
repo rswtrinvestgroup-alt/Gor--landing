@@ -1,5 +1,17 @@
 const TELEGRAM_BOT_USERNAME = window.GOR_TELEGRAM?.botUsername || 'Gor_OffLife_kartvisit_bot';
-const TELEGRAM_BOT_URL = `https://t.me/${TELEGRAM_BOT_USERNAME}`;
+const TELEGRAM_BOT_BASE = `https://t.me/${TELEGRAM_BOT_USERNAME}`;
+const LANDING_CAMPAIGNS = window.GOR_TELEGRAM?.campaigns || {
+  tr: 'roi_tr', en: 'roi_en', es: 'roi_es', ru: 'roi_ru', hy: 'roi_hy'
+};
+const DEFAULT_CAMPAIGN = window.GOR_TELEGRAM?.defaultCampaign || 'roi_lp';
+
+function getTelegramLandingUrl(lang) {
+  const l = (lang || (typeof currentLang !== 'undefined' ? currentLang : 'tr')).toLowerCase();
+  const campaign = LANDING_CAMPAIGNS[l] || DEFAULT_CAMPAIGN;
+  return `${TELEGRAM_BOT_BASE}?start=${campaign}`;
+}
+
+const TELEGRAM_BOT_URL = getTelegramLandingUrl();
 const TELEGRAM_LEAD_API = window.GOR_TELEGRAM?.leadApi || '/api/telegram-lead';
 
 const CONTACT = {
@@ -9,7 +21,7 @@ const CONTACT = {
   phoneRu: '+79220918218',
   phoneRuDisplay: '+7 922 091 82 18',
   whatsapp: 'https://wa.me/79220918218',
-  telegramBot: TELEGRAM_BOT_URL,
+  telegramBot: getTelegramLandingUrl(),
   telegramDirect: 'https://t.me/SargsyanOfLife'
 };
 
@@ -286,9 +298,10 @@ class SalesAgent {
 
   buildContactLinksHtml() {
     const intro = this.m('contactLinksIntro');
+    const botUrl = getTelegramLandingUrl();
     const links = [
       { href: CONTACT.whatsapp, label: '💬 WhatsApp', text: CONTACT.phoneRuDisplay },
-      { href: CONTACT.telegramBot, label: '✈️ Telegram Bot', text: '@' + TELEGRAM_BOT_USERNAME },
+      { href: botUrl, label: '✈️ Telegram Bot', text: '@' + TELEGRAM_BOT_USERNAME },
       { href: CONTACT.telegramDirect, label: '✈️ Telegram', text: '@SargsyanOfLife' },
       { href: 'mailto:' + CONTACT.email, label: '📧 Email', text: CONTACT.email },
       { href: 'tel:' + CONTACT.phoneEs, label: '🇪🇸 España', text: CONTACT.phoneEsDisplay }
@@ -745,15 +758,16 @@ class SalesAgent {
     });
   }
 
-  /** Aynı Telegram botu — web oturumu ile bağlı /start parametresi (max 64 karakter) */
+  /** Landing deep link veya web oturumu handoff */
   openTelegram({ announce = true } = {}) {
     const start = `web_${this.sessionId}`.slice(0, 64);
+    const url = `${TELEGRAM_BOT_BASE}?start=${encodeURIComponent(start)}`;
     if (announce) {
       this.addBotMessage(
         this.m('telegramHandoff').replace('{session}', this.sessionId)
       );
     }
-    window.open(`${TELEGRAM_BOT_URL}?start=${encodeURIComponent(start)}`, '_blank', 'noopener,noreferrer');
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   onLangChange() {
