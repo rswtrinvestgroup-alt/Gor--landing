@@ -1,7 +1,24 @@
+# Ortam ve gizli anahtarlar
 .env
 .env.local
-.vercel
-.netlify
-node_modules/
+.env.*.local
+
+# Python bot dosyaları (landing reposunda olmamalı)
+bot.py
+marketing_agent.py
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+# Bağımlılıklar ve deploy
+node_modules/
+.vercel
+.netlify
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
